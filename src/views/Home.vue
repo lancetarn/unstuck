@@ -1,17 +1,17 @@
 <template>
   <div class="home">
-    <Unstuck />
+    <Stuck />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import Unstuck from '@/components/Unstuck.vue'
+import Stuck from '@/components/Stuck.vue'
 
 export default {
   name: 'home',
   components: {
-    Unstuck
+    Stuck
   }
 }
 </script>
