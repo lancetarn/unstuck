@@ -1,15 +1,15 @@
 <template>
   <div id="app">
-    <h1>Stuck?</h1>
-    <!-- <div id="nav"> -->
-    <!--   <router-link to="/">Home</router-link> | -->
-    <!--   <router-link to="/about">About</router-link> -->
-    <!-- </div> -->
     <router-view/>
   </div>
 </template>
 
-<style>
+<style lang="scss">
+@import "~bulma/sass/utilities/_all";
+@import "~bulma/sass/base/_all";
+@import "~bulma/sass/elements/button";
+@import "~bulma/sass/components/navbar";
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
