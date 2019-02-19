@@ -7,8 +7,9 @@
 <style lang="scss">
 @import "~bulma/sass/utilities/_all";
 @import "~bulma/sass/base/_all";
-@import "~bulma/sass/elements/button";
+@import "~bulma/sass/elements/_all";
 @import "~bulma/sass/components/navbar";
+@import "~bulma/sass/grid/_all.sass";
 
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;

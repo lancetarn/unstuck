@@ -1,17 +1,29 @@
 <template lang="pug">
-  .container
+  .container.Settings
     navbar
-    section
-      label.label(for="yourway") Another way to unstick:
-      .control
-        input.input(v-model="newOption" type="text", name="yourway" v-on:keyup.enter="addOption")
-      button.button.is-primary(
-        v-on:click="addOption"
-        ) ADD
-    section
-      ul Your mobilizers:
-        li(v-for="option in options" :key="option") {{ option }}
-          span.has-background-danger.deleter(v-on:click="deleteOption(option)") X
+    .columns
+      section.column.AddOption
+        label.label.AddOption__label(for="yourway") Another way to unstick:
+        .field.has-addons
+          .control
+            input.input.AddOption__input(
+              v-model="newOption"
+              type="text",
+              name="yourway"
+              v-on:keyup.enter="addOption"
+            )
+          .control
+            button.button.is-primary.AddOption__add(
+              v-on:click="addOption"
+            ) ADD
+      section.column
+        ul.OptionsList Your mobilizers:
+          li.OptionsList__item.has-text-dark.is-size-4.has-text-left(
+            v-for="option in options" :key="option"
+          ) {{ option }}
+            button.OptionsList__delete.delete.is-pulled-right(
+              v-on:click="deleteOption(option)"
+            )
 </template>
 
 <script>
@@ -34,7 +46,6 @@ function addOption () {
 }
 
 function deleteOption (option) {
-  console.log(option);
   const index = this.options.indexOf(option);
   this.options.splice(index, 1);
   this.saveOptions();
@@ -57,9 +68,35 @@ export default {
 }
 </script>
 
-<style>
-.deleter {
-  cursor: pointer;
+<style scoped lang="scss">
+
+.Settings {
   margin-left: 5px;
 }
+
+.AddOption {
+  &__label {
+    text-align: left;
+  }
+}
+
+.OptionsList {
+
+  border-left: 1px black;
+
+  &__item {
+    padding-left: 5px;
+  }
+  &__item:hover {
+    border-bottom: 0 none;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.46);
+  }
+
+  &__delete {
+    vertical-align: middle;
+    margin-right: 5px;
+    margin-top: 8px;
+  }
+}
+
 </style>

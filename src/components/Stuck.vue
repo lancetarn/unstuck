@@ -2,7 +2,7 @@
 div.Suggester
   button.button.is-primary(v-on:click="suggest", v-if="!suggested") Get Unstuck
   div.suggestion(v-if="suggested")
-    h2 {{ suggested }}
+    h2.is-size-1 {{ suggested }}
     button.button.is-primary(v-on:click="suggest") More
 </template>
 

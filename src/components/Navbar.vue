@@ -13,7 +13,8 @@
     .navbar-menu(v-bind:class="{ 'is-active': menuActive }")
       .navbar-start
       .navbar-end
-        router-link(to="/settings") Settings
+        router-link.navbar-item(to="/settings") Settings
+    hr
 </template>
 
 <script>
