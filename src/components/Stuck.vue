@@ -16,8 +16,13 @@ const OPTIONS = [
 ];
 
 function loadOptions () {
-  const options = localStorage.getItem('unstuckOptions') || false;
-  return JSON.parse(options);
+  let options = localStorage.getItem('unstuckOptions') || false;
+  options = JSON.parse(options);
+  if (! options ) {
+    options = OPTIONS;
+    localStorage.setItem('unstuckOptions', JSON.stringify(options));
+  }
+  return options;
 }
 
 function getRandomIndex(arr) {
@@ -35,7 +40,7 @@ function mounted() {
 
 function initializeData() {
   return {
-    options: loadOptions() || OPTIONS,
+    options: loadOptions(),
     suggested: ''
   }
 }

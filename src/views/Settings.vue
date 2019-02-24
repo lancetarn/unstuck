@@ -16,6 +16,8 @@
             button.button.is-primary.AddOption__add(
               v-on:click="addOption"
             ) ADD
+        transition(name="Flash")
+          .has-background-warning(v-if="message") {{ message }}
       section.column
         ul.OptionsList Your mobilizers:
           transition-group(name="OptionsList")
@@ -33,12 +35,17 @@ import Navbar from '@/components/Navbar.vue'
 function data () {
   return {
     newOption: '',
-    options: loadOptions() || []
+    options: loadOptions() || [],
+    message: '',
 }}
 
 function addOption () {
   const trimmed = this.newOption.trim()
   if (!trimmed) {
+    return;
+  }
+  if (this.options.indexOf(trimmed) !== -1) {
+    this.flash('Oops, that is already in your list!');
     return;
   }
   this.options.push(trimmed);
@@ -61,11 +68,17 @@ function saveOptions () {
   localStorage.setItem('unstuckOptions', JSON.stringify(this.options));
 }
 
+function flash (message, duration) {
+  const timeout = duration || 4000;
+  this.message = message;
+  setTimeout( () => this.message = '', timeout)
+}
+
 export default {
   name: 'Settings',
   components: { Navbar },
   data,
-  methods: { addOption, deleteOption, saveOptions, loadOptions }
+  methods: { addOption, deleteOption, saveOptions, loadOptions, flash }
 }
 </script>
 
@@ -73,6 +86,16 @@ export default {
 
 .Settings {
   margin-left: 5px;
+}
+
+.Flash {
+  &-enter, &-leave-to {
+    opacity: 0;
+  }
+
+  &-enter-active, &-leave-active {
+    transition: all .3s
+  }
 }
 
 .AddOption {
@@ -91,7 +114,6 @@ export default {
 
   &-enter, &-leave-to {
     opacity: 0;
-    height: 0;
     transform: rotateY(-90deg);
   }
 
