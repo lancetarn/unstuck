@@ -1,7 +1,6 @@
 <template lang="pug">
-  div.container
-    section
-      navbar
+.container
+    navbar
     section
       stuck
 </template>

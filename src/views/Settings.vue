@@ -3,7 +3,7 @@
     navbar
     .columns
       section.column.AddOption
-        label.label.AddOption__label(for="yourway") Another way to unstick:
+        label.label.AddOption__label(for="yourway") I Unstick by:
         .field.has-addons
           .control
             input.input.AddOption__input(
@@ -18,12 +18,13 @@
             ) ADD
       section.column
         ul.OptionsList Your mobilizers:
-          li.OptionsList__item.has-text-dark.is-size-4.has-text-left(
-            v-for="option in options" :key="option"
-          ) {{ option }}
-            button.OptionsList__delete.delete.is-pulled-right(
-              v-on:click="deleteOption(option)"
-            )
+          transition-group(name="OptionsList")
+            li.OptionsList__item.has-text-dark.is-size-4.has-text-left(
+              v-for="option in options" :key="option"
+            ) {{ option }}
+              button.OptionsList__delete.delete.is-pulled-right(
+                v-on:click="deleteOption(option)"
+              )
 </template>
 
 <script>
@@ -84,8 +85,20 @@ export default {
 
   border-left: 1px black;
 
+  &-enter-active, &-leave-active {
+    transition: all .3s ease-in;
+  }
+
+  &-enter, &-leave-to {
+    opacity: 0;
+    height: 0;
+    transform: rotateY(-90deg);
+  }
+
+
   &__item {
     padding-left: 5px;
+    height: 100%;
   }
   &__item:hover {
     border-bottom: 0 none;

@@ -1,5 +1,5 @@
 <template lang="pug">
-  nav.navbar
+  nav.navbar.has-shadow.UnstuckNav
     .navbar-brand
       .navbar-item
         router-link(to="/") UnStuck
@@ -14,7 +14,6 @@
       .navbar-start
       .navbar-end
         router-link.navbar-item(to="/settings") Settings
-    hr
 </template>
 
 <script>
@@ -34,3 +33,11 @@ export default {
   methods: {toggleMenu},
 }
 </script>
+
+<style scoped lang="scss">
+
+.UnstuckNav {
+  margin-bottom: 20px;
+}
+</style>
+
